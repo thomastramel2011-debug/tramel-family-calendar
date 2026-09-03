@@ -1,0 +1,9 @@
+.todo-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 6px 0; }
+.todo-row label { display: flex; align-items: center; gap: 8px; flex: 1; color: #e8f0ea; }
+.todo-row .done { text-decoration: line-through; color: #9bb5a6; }
+.todo-add { display: flex; gap: 8px; margin-top: 10px; }
+.todo-add input { flex: 1; }
+button.tiny { padding: 4px 8px; min-width: 0; }
+#holCard label { display: block; font-size: .8rem; color: #9bb5a6; margin: 6px 0; }
+#holCard input[type=date] { width: 100%; margin-top: 4px; padding: 8px; }
+#holCard .btn { display: inline-block; margin: 6px 6px 0 0; }
