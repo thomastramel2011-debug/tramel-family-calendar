@@ -1,15 +1,10 @@
-.wtrack { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-top: 10px; }
-.wbox { background: #1a2e24; border: 1px solid #2f4a3c; border-radius: 12px; padding: 8px; }
-.wbox.dad { border-color: #5b9fd4; }
-.wbox.mom { border-color: #d46b8a; }
-.wbox.son { border-color: #7d6ad9; }
-.wbox h3 { font-size: .7rem; text-transform: uppercase; letter-spacing: .04em; margin-bottom: 4px; }
-.wdelt { font-size: .78rem; font-weight: 700; margin-bottom: 6px; }
+.wtrack { display: none !important; }
+.wtotals { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 8px 0 12px; }
+.wtotals .wmeta { display: block; font-size: .68rem; color: #9bb5a6; text-transform: uppercase; letter-spacing: .04em; }
+.wdelt { font-size: .95rem; font-weight: 700; margin: 4px 0 0; }
 .wdelt.down { color: #8fd4a8; }
 .wdelt.up { color: #e08a6a; }
 .wdelt.flat { color: #d4a017; }
-.wbox label { display: block; font-size: .68rem; color: #9bb5a6; margin: 3px 0; }
-.wbox input[type=number] { width: 100%; margin: 2px 0 4px; padding: 6px; font-size: .85rem; }
-.wbox .ghost { width: 100%; padding: 6px; font-size: .75rem; margin-top: 4px; }
 .wmeta { font-size: .68rem; color: #9bb5a6; margin: 4px 0; }
-@media (max-width: 380px) { .wtrack { grid-template-columns: 1fr; } }
+#view-today label { display: block; font-size: .8rem; color: #9bb5a6; margin: 6px 0 2px; }
+#view-today input[type=number] { width: 100%; padding: 8px; margin-bottom: 6px; }

@@ -14,13 +14,30 @@
     const current = row.current != null && row.current !== '' ? Number(row.current) : null;
     return { start: start != null && !isNaN(start) ? start : null, current: current != null && !isNaN(current) ? current : null, logs: row.logs || [] };
   }
-  function deltaText(who) {
-    const r = rec(who);
-    if (r.current == null || r.start == null) return { line: 'Enter start and today', cls: 'flat' };
-    const diff = Math.round((r.current - r.start) * 10) / 10;
-    if (diff === 0) return { line: 'Even with start', cls: 'flat' };
+  function rnd(n) { return Math.round(n * 10) / 10; }
+  function phrase(diff) {
+    if (diff == null || isNaN(diff)) return { line: '—', cls: 'flat' };
+    if (diff === 0) return { line: 'Even', cls: 'flat' };
     if (diff < 0) return { line: 'Down ' + Math.abs(diff) + ' lb', cls: 'down' };
     return { line: 'Up ' + diff + ' lb', cls: 'up' };
+  }
+  function monthKey(d) { return String(d).slice(0, 7); }
+  function totals(who) {
+    const r = rec(who);
+    if (r.current == null) return { month: null, all: null };
+    const all = r.start != null ? rnd(r.current - r.start) : null;
+    const now = new Date();
+    const ym = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0');
+    const logs = (r.logs || []).slice().sort(function (a, b) { return String(a.d).localeCompare(String(b.d)); });
+    var before = null;
+    var firstThis = null;
+    for (var i = 0; i < logs.length; i++) {
+      if (monthKey(logs[i].d) < ym) before = logs[i].w;
+      if (monthKey(logs[i].d) === ym && firstThis == null) firstThis = logs[i].w;
+    }
+    var monthStart = before != null ? before : (firstThis != null ? firstThis : r.start);
+    var month = monthStart != null ? rnd(r.current - monthStart) : null;
+    return { month: month, all: all };
   }
   window.saveWeight = function (who) {
     const startEl = document.getElementById('w-start-' + who);
@@ -33,7 +50,7 @@
     const logs = prev.logs.slice();
     logs.push({ d: new Date().toISOString().slice(0, 10), w: now });
     const all = loadW();
-    all[who] = { start: start, current: now, logs: logs.slice(-60) };
+    all[who] = { start: start, current: now, logs: logs.slice(-90) };
     saveW(all);
     if (typeof selectedPerson !== 'undefined' && selectedPerson === who && typeof togglePerson === 'function') {
       var keep = selectedPerson;
@@ -43,23 +60,28 @@
   };
   function weightCard(who) {
     const r = rec(who);
-    const d = deltaText(who);
+    const t = totals(who);
+    const month = phrase(t.month);
+    const all = phrase(t.all);
     var n = { dad: 'Thomas', mom: 'Allyson', son: 'Son' };
     try { if (typeof names === 'function') n = names(); } catch (e) {}
     const label = who === 'dad' ? n.dad : (who === 'mom' ? n.mom : n.son);
     const goal = GOAL[who];
     var extra = '';
     if (goal && r.current != null) {
-      const left = Math.round((r.current - goal) * 10) / 10;
+      const left = rnd(r.current - goal);
       extra = left > 0 ? '<p class="wmeta">' + left + ' lb to ' + goal + '</p>' : '<p class="wmeta">At goal</p>';
     }
     return '<div class="card"><h2>Weight \u00b7 ' + label + '</h2>' +
-      '<p class="wdelt ' + d.cls + '">' + d.line + '</p>' +
+      '<div class="wtotals">' +
+      '<div><span class="wmeta">This month</span><p class="wdelt ' + month.cls + '">' + month.line + '</p></div>' +
+      '<div><span class="wmeta">All time</span><p class="wdelt ' + all.cls + '">' + all.line + '</p></div>' +
+      '</div>' +
       '<label>Start <input type="number" inputmode="decimal" id="w-start-' + who + '" value="' + (r.start != null ? r.start : '') + '" placeholder="0" /></label>' +
       '<label>Today <input type="number" inputmode="decimal" id="w-now-' + who + '" value="' + (r.current != null ? r.current : '') + '" placeholder="0" /></label>' +
       extra +
       '<button type="button" class="btn" onclick="saveWeight(\'' + who + '\')">Save weigh-in</button>' +
-      '<p class="note" style="margin-top:8px">Morning, after the bathroom, before breakfast. First save sets the start if it is still blank.</p></div>';
+      '<p class="note" style="margin-top:8px">This month uses the last weigh-in from last month, or start if this is the first month. All time is today versus start.</p></div>';
   }
   function hideFront() {
     var host = document.getElementById('wtrack');
