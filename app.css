@@ -24,10 +24,17 @@ header {
 header h1 { font-size: 1.15rem; letter-spacing: .02em; }
 header p { color: var(--muted); font-size: .8rem; margin-top: 2px; }
 .pills { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
-.pill { border: 1px solid var(--line); background: var(--card); color: var(--text); border-radius: 999px; padding: 6px 10px; font-size: .75rem; }
+.pill {
+  border: 1px solid var(--line); background: var(--card); color: var(--text);
+  border-radius: 999px; padding: 6px 10px; font-size: .75rem;
+  cursor: pointer; -webkit-tap-highlight-color: transparent;
+}
 .pill.dad { border-color: var(--dad); color: #c5e0f5; }
 .pill.son { border-color: var(--son); color: #d5cff5; }
 .pill.mom { border-color: var(--mom); color: #f5c9d6; }
+.pill.on { background: #2a3d48; box-shadow: 0 0 0 1px var(--gold); }
+.pill.mom.on { background: #3a2430; }
+.pill.son.on { background: #2a2644; }
 nav {
   position: fixed; bottom: 0; left: 0; right: 0;
   display: grid; grid-template-columns: repeat(5, 1fr);
@@ -57,6 +64,8 @@ main { padding: 14px 14px 20px; max-width: 720px; margin: 0 auto; }
 .who.all { background: #1e4a32; color: #b6e3c7; }
 .who.men { background: #1d3550; color: #b9d7f2; }
 .who.mom { background: #4a2433; color: #f3c2d0; }
+.who.dad { background: #1d3550; color: #b9d7f2; }
+.who.son { background: #32285a; color: #d5cff5; }
 .week { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
 .daybtn {
   background: var(--card2); border: 1px solid var(--line); color: var(--text);
@@ -87,3 +96,8 @@ textarea, input[type=text], select {
 .note { font-size:.8rem; color: var(--muted); }
 .ok { color:#8fd4a8; font-size:.8rem; }
 .bad { color:#e08a6a; font-size:.8rem; }
+@media (max-width: 420px) {
+  .plate { grid-template-columns: 1fr; }
+  .event { grid-template-columns: 72px 1fr; }
+  .who { justify-self: start; }
+}
