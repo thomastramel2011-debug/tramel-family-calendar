@@ -1,0 +1,30 @@
+.kcal-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+.kcal-box { background: #16261e; border: 1px solid #2f4a3c; border-radius: 12px; padding: 8px; }
+.kcal-box.dad { border-color: #5b9fd4; }
+.kcal-box.son { border-color: #7d6ad9; }
+.kcal-box.mom { border-color: #d46b8a; }
+.kcal-box h3 { font-size: .72rem; text-transform: uppercase; letter-spacing: .04em; margin-bottom: 2px; }
+.kcal-num { font-size: 1.15rem; font-weight: 700; color: #e8f0ea; margin: 2px 0; }
+button.meal-link {
+  display: inline-block; background: none; border: 0; padding: 0;
+  color: #d4a017; font: inherit; text-align: left; text-decoration: underline;
+  text-underline-offset: 2px; cursor: pointer;
+}
+.meal-btns { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+.meal-btns .meal-link {
+  background: #22382c; border: 1px solid #3d6a48; border-radius: 12px;
+  padding: 10px 12px; text-decoration: none; color: #e8f0ea;
+}
+.meal-modal {
+  display: none; position: fixed; inset: 0; background: rgba(0,0,0,.55);
+  z-index: 90; align-items: flex-end; justify-content: center;
+}
+.meal-modal.on { display: flex; }
+.meal-sheet {
+  background: #1a2e24; border: 1px solid #2f4a3c; border-radius: 18px 18px 0 0;
+  padding: 18px 16px calc(18px + env(safe-area-inset-bottom));
+  width: 100%; max-width: 720px; max-height: 82vh; overflow: auto;
+}
+.meal-sheet p { color: #cfe0d6; font-size: .92rem; line-height: 1.4; margin-bottom: 8px; }
+.meal-sheet .btn, .meal-sheet .ghost { margin-right: 8px; margin-top: 8px; }
+@media (max-width: 420px) { .kcal-row { grid-template-columns: 1fr; } }
