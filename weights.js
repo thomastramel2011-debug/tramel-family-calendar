@@ -1,5 +1,10 @@
 (function () {
-  try { localStorage.removeItem('tramel-weights'); } catch (e) {}
+  try {
+    if (!localStorage.getItem('tramel-weights-cleared-k')) {
+      localStorage.removeItem('tramel-weights');
+      localStorage.setItem('tramel-weights-cleared-k', '1');
+    }
+  } catch (e) {}
   const GOAL = { dad: 224, son: 224, mom: null };
   function loadW() { try { return JSON.parse(localStorage.getItem('tramel-weights')) || {}; } catch (e) { return {}; } }
   function saveW(data) { localStorage.setItem('tramel-weights', JSON.stringify(data)); }
