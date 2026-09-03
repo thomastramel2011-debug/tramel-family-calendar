@@ -1,0 +1,19 @@
+.moves { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+button.move {
+  background: #22382c; color: #e8f0ea; border: 1px solid #3d6a48;
+  border-radius: 999px; padding: 8px 12px; font: inherit; font-size: .8rem;
+}
+button.move:active { background: #2f5a3c; }
+.move-modal {
+  display: none; position: fixed; inset: 0; background: rgba(0,0,0,.55);
+  z-index: 80; align-items: flex-end; justify-content: center;
+}
+.move-modal.on { display: flex; }
+.move-sheet {
+  background: #1a2e24; border: 1px solid #2f4a3c; border-radius: 18px 18px 0 0;
+  padding: 18px 16px calc(18px + env(safe-area-inset-bottom));
+  width: 100%; max-width: 720px; max-height: 80vh; overflow: auto;
+}
+.move-sheet h2 { margin-bottom: 8px; }
+.move-sheet p { color: #cfe0d6; font-size: .92rem; line-height: 1.4; margin-bottom: 12px; }
+.move-sheet .btn, .move-sheet .ghost { margin-right: 8px; margin-top: 4px; }
