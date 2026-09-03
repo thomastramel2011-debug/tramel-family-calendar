@@ -1,0 +1,89 @@
+:root {
+  --bg: #0f1c16;
+  --card: #1a2e24;
+  --card2: #22382c;
+  --line: #2f4a3c;
+  --text: #e8f0ea;
+  --muted: #9bb5a6;
+  --gold: #d4a017;
+  --dad: #5b9fd4;
+  --son: #7d6ad9;
+  --mom: #d46b8a;
+  --all: #3d9b6d;
+  --warn: #e07a3d;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--bg); color: var(--text); font-family: "Segoe UI", system-ui, sans-serif; min-height: 100%; }
+body { padding-bottom: 84px; }
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: linear-gradient(180deg, #13241c 0%, #0f1c16 100%);
+  border-bottom: 1px solid var(--line);
+  padding: 14px 16px 10px;
+}
+header h1 { font-size: 1.15rem; letter-spacing: .02em; }
+header p { color: var(--muted); font-size: .8rem; margin-top: 2px; }
+.pills { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+.pill { border: 1px solid var(--line); background: var(--card); color: var(--text); border-radius: 999px; padding: 6px 10px; font-size: .75rem; }
+.pill.dad { border-color: var(--dad); color: #c5e0f5; }
+.pill.son { border-color: var(--son); color: #d5cff5; }
+.pill.mom { border-color: var(--mom); color: #f5c9d6; }
+nav {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  background: #122018; border-top: 1px solid var(--line);
+  padding: 8px 4px calc(8px + env(safe-area-inset-bottom));
+  z-index: 30;
+}
+nav button { background: none; border: 0; color: var(--muted); font-size: .68rem; padding: 6px 2px; }
+nav button.active { color: var(--gold); }
+nav button span { display: block; font-size: 1.05rem; margin-bottom: 2px; }
+main { padding: 14px 14px 20px; max-width: 720px; margin: 0 auto; }
+.card {
+  background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+  padding: 14px; margin-bottom: 12px;
+}
+.card h2 { font-size: .95rem; margin-bottom: 10px; }
+.now { background: linear-gradient(135deg, #1e3d2c, #2a4a28); border-color: #3d6a48; }
+.event {
+  display: grid; grid-template-columns: 64px 1fr auto; gap: 8px;
+  padding: 10px 0; border-bottom: 1px solid var(--line); align-items: start;
+}
+.event:last-child { border-bottom: 0; }
+.event time { color: var(--gold); font-variant-numeric: tabular-nums; font-size: .8rem; font-weight: 700; }
+.event b { display: block; font-size: .92rem; }
+.event small { color: var(--muted); }
+.who { font-size: .65rem; border-radius: 6px; padding: 3px 6px; align-self: center; }
+.who.all { background: #1e4a32; color: #b6e3c7; }
+.who.men { background: #1d3550; color: #b9d7f2; }
+.who.mom { background: #4a2433; color: #f3c2d0; }
+.week { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.daybtn {
+  background: var(--card2); border: 1px solid var(--line); color: var(--text);
+  border-radius: 10px; padding: 8px 0; font-size: .72rem;
+}
+.daybtn.on { background: #2f5a3c; border-color: var(--gold); }
+a.btn, button.btn {
+  display: inline-block; background: #2c6a45; color: white; text-decoration: none;
+  border: 0; border-radius: 10px; padding: 10px 12px; font-size: .85rem; margin: 4px 4px 0 0;
+}
+button.ghost, a.ghost {
+  background: transparent; border: 1px solid var(--line); color: var(--text);
+  border-radius: 10px; padding: 10px 12px; font-size: .85rem; text-decoration: none; display: inline-block;
+}
+label.check { display: flex; gap: 8px; align-items: flex-start; padding: 7px 0; font-size: .88rem; }
+label.check input { margin-top: 3px; }
+.done { color: var(--muted); text-decoration: line-through; }
+.plate { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+.plate div { background: var(--card2); border-radius: 12px; padding: 10px; font-size: .78rem; }
+.plate h3 { font-size: .72rem; text-transform: uppercase; letter-spacing: .04em; margin-bottom: 6px; }
+.maps a { display: block; background: var(--card2); border-radius: 12px; padding: 12px; margin-bottom: 8px; color: var(--text); text-decoration: none; }
+.maps a strong { color: var(--gold); }
+.sharebar { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+textarea, input[type=text], select {
+  width: 100%; background: var(--card2); color: var(--text); border: 1px solid var(--line);
+  border-radius: 10px; padding: 8px; font: inherit; margin: 4px 0 8px;
+}
+.note { font-size:.8rem; color: var(--muted); }
+.ok { color:#8fd4a8; font-size:.8rem; }
+.bad { color:#e08a6a; font-size:.8rem; }
